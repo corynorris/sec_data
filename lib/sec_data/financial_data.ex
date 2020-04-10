@@ -10,6 +10,10 @@ defmodule SecData.FinancialData do
 
   @start_date ~D[2009-01-01]
 
+  def list_datasets() do
+    Repo.all(Dataset)
+  end
+
   def delete_dataset(%Dataset{} = datasets) do
     Repo.delete(datasets)
   end

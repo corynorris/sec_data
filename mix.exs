@@ -47,7 +47,8 @@ defmodule SecData.MixProject do
       {:hackney, "~> 1.15"},
       {:ex_rated, "~> 1.3"},
       {:scrivener_ecto, "~> 2.0"},
-      {:quantum, "~> 3.0-rc"}
+      {:quantum, "~> 3.0-rc"},
+      {:cors_plug, "~> 2.0"}
     ]
   end
 
