@@ -12,8 +12,6 @@ defmodule SecData.Statements.Presentation do
     field :stmt, FinancialStatement
     field :tag, :string
     field :version, :string
-
-    timestamps()
   end
 
   @doc false

@@ -2,8 +2,8 @@ defmodule SecData.Repo.Migrations.CreateSubmissions do
   use Ecto.Migration
 
   def change do
-    create table(:submissions) do
-      add :adsh, :string
+    create table(:submissions, primary_key: false) do
+      add :adsh, :string, primary_key: true
       add :cik, :bigint
       add :name, :string
       add :sic, :integer

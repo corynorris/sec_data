@@ -12,8 +12,6 @@ defmodule SecData.Statements.Tag do
     field :iord, :string
     field :tlabel, :string
     field :version, :string
-
-    timestamps()
   end
 
   @doc false

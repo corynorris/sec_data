@@ -11,10 +11,10 @@ defmodule SecData.Application do
       # Start the Ecto repository
       SecData.Repo,
       # Start the endpoint when the application starts
-      SecDataWeb.Endpoint
+      SecDataWeb.Endpoint,
       # Starts a worker by calling: SecData.Worker.start_link(arg)
       # {SecData.Worker, arg},
-      # QueueBroadcaster,
+      SecData.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

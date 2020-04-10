@@ -2,6 +2,16 @@ defmodule SecData.Statements.Submission do
   use Ecto.Schema
   import Ecto.Changeset
 
+  # Listed as required but not present in many records
+  # :countryba,
+  # :cityba,
+  # :fye,
+  # :countryinc,
+  # :fy,
+  # :fp,
+
+  @primary_key {:adsh, :string, []}
+  @derive {Phoenix.Param, key: :adsh}
   schema "submissions" do
     field :detail, :boolean, default: false
     field :mas1, :string
@@ -26,21 +36,18 @@ defmodule SecData.Statements.Submission do
     field :name, :string
     field :baph, :string
     field :aciks, :string
-    field :fp, :string
+    field :fp, FiscalPeriod
     field :fye, :string
     field :cityba, :string
     field :mas2, :string
     field :nciks, :integer
     field :stprba, :string
-    field :adsh, :string
-    field :fy, FiscalPeriod
+    field :fy, :integer
     field :period, SecDate
     field :countryinc, :string
     field :stprma, :string
     field :accepted, :utc_datetime
     field :cik, :integer
-
-    timestamps()
   end
 
   @doc false
@@ -88,15 +95,9 @@ defmodule SecData.Statements.Submission do
       :adsh,
       :cik,
       :name,
-      :countryba,
-      :cityba,
-      :countryinc,
       :wksi,
-      :fye,
       :form,
       :period,
-      :fy,
-      :fp,
       :filed,
       :accepted,
       :prevrpt,

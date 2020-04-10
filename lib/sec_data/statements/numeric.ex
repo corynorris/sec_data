@@ -12,8 +12,6 @@ defmodule SecData.Statements.Numeric do
     field :uom, :string
     field :value, :float
     field :version, :string
-
-    timestamps()
   end
 
   @doc false

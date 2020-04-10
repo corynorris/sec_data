@@ -10,6 +10,22 @@ defmodule SecData.FinancialData do
 
   @start_date ~D[2009-01-01]
 
+  def delete_dataset(%Dataset{} = datasets) do
+    Repo.delete(datasets)
+  end
+
+  def mark_started(%Dataset{} = dataset) do
+    dataset
+    |> Ecto.Changeset.change(started_at: DateTime.truncate(Timex.now(), :second))
+    |> Repo.update!()
+  end
+
+  def mark_completed(%Dataset{} = dataset) do
+    dataset
+    |> Ecto.Changeset.change(completed_at: DateTime.truncate(Timex.now(), :second))
+    |> Repo.update!()
+  end
+
   def list_unprocessed_datasets() do
     Repo.all(
       from x in Dataset,

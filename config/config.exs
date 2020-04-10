@@ -10,6 +10,13 @@ use Mix.Config
 config :sec_data,
   ecto_repos: [SecData.Repo]
 
+# Cron Jobs
+config :sec_data, SecData.Scheduler,
+  jobs: [
+    # Runs every midnight:
+    {"@daily", {SecData.Pipeline, :process_all, []}}
+  ]
+
 # Configures the endpoint
 config :sec_data, SecDataWeb.Endpoint,
   url: [host: "localhost"],
@@ -25,6 +32,11 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Configure tesla to work with Hackney
+config :tesla, adapter: Tesla.Adapter.Hackney
+
+#
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

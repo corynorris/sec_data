@@ -42,7 +42,12 @@ defmodule SecData.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ecto_enum, "~> 1.4"},
       {:timex, "~> 3.6"},
-      {:broadway, "~> 0.6.0"}
+      {:flow, "~> 1.0.0"},
+      {:tesla, "~> 1.3"},
+      {:hackney, "~> 1.15"},
+      {:ex_rated, "~> 1.3"},
+      {:scrivener_ecto, "~> 2.0"},
+      {:quantum, "~> 3.0-rc"}
     ]
   end
 

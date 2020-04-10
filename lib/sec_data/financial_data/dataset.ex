@@ -3,8 +3,8 @@ defmodule SecData.FinancialData.Dataset do
   import Ecto.Changeset
 
   schema "datasets" do
-    field :completed_at, :naive_datetime
-    field :started_at, :naive_datetime
+    field :completed_at, :utc_datetime
+    field :started_at, :utc_datetime
     field :url, :string
   end
 

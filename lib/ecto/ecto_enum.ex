@@ -26,5 +26,6 @@ defenum(FinancialStatement,
   cash_flow: "CF",
   equity: "EQ",
   comprehensive_income: "CI",
-  unclassifiable: "UN"
+  unclassifiable: "UN",
+  cover_page: "CP"
 )
