@@ -114,7 +114,7 @@ defmodule SecData.Pipeline do
     with {:ok, files} <- :zip.unzip(zip_file, [{:cwd, temp_dir}]) do
       {dataset, files}
     else
-      _ -> []
+      message -> {dataset, {:error, message}}
     end
   end
 end
