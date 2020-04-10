@@ -14,7 +14,7 @@ config :sec_data,
 config :sec_data, SecData.Scheduler,
   jobs: [
     # Runs every midnight:
-    {"@daily", {SecData.Pipeline, :process_all, []}}
+    {"@weekly", {SecData.Pipeline, :process_all, []}}
   ]
 
 # Configures the endpoint

@@ -2,7 +2,6 @@ defmodule SecDataWeb.CompanyController do
   use SecDataWeb, :controller
 
   alias SecData.Companies
-  alias SecData.Companies.Company
 
   action_fallback SecDataWeb.FallbackController
 

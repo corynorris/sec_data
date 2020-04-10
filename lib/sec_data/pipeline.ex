@@ -21,7 +21,7 @@ defmodule SecData.Pipeline do
 
       Ecto.Adapters.SQL.query(
         SecData.Repo,
-        "VACUUM (FULL,ANALYZE) public.#{table}",
+        "VACUUM (ANALYZE) public.#{table}",
         [],
         timeout: 2 * 60 * 60 * 1000
       )

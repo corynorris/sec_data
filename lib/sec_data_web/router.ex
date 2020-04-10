@@ -11,7 +11,7 @@ defmodule SecDataWeb.Router do
     get "/search", CompanyController, :search
 
     resources "/companies", CompanyController, only: [:index, :show] do
-      get "/submissions", SubmissionController, :index do
+      resources "/submissions", SubmissionController, only: [:index] do
         get "/presentations", StatementController, :presentations
         get "/numerics", StatementController, :numerics
       end
