@@ -9,7 +9,7 @@ Downloads data from the SEC Archives, inclduding:
 
 Note, the dataset is quite large and consumes about 46GB as of the time of writting (Q2 2020). The application is configured to checks for new data weekly, so if growing data size is a concern disable the quantum task in the `config.exe` file.
 
-## Api
+## API
 
 The API exposes the following paths
 
