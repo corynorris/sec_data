@@ -53,6 +53,7 @@ defmodule SecData.Pipeline do
 
     FinancialData.list_unprocessed_datasets()
     |> Flow.from_enumerable()
+    # |> Flow.partition()
     |> Flow.map(&download_dataset/1)
     |> Flow.map(&unzip_folder/1)
     |> Flow.map(&extract_statement/1)

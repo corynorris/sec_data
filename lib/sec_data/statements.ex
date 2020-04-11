@@ -12,6 +12,50 @@ defmodule SecData.Statements do
   alias SecData.Statements.Statement
   alias SecData.Statements.Tag
 
+  def list_statements(cik) do
+    query =
+      from s in Submission,
+        join: p in Presentation,
+        on: s.adsh == p.adsh,
+        join: n in Numeric,
+        on: p.adsh == n.adsh and p.tag == n.tag and p.version == n.version,
+        join: t in Tag,
+        on: p.tag == t.tag and p.version == t.version,
+        where:
+          s.period == n.ddate and s.cik == ^cik and (s.form == "10-Q" or s.form == "10-K") and
+            not is_nil(t.iord),
+        select: %Statement{
+          cik: s.cik,
+          form: s.form,
+          fy: s.fy,
+          fp: s.fp,
+          adsh: p.adsh,
+          report: p.report,
+          line: p.line,
+          stmt: p.stmt,
+          inpth: p.inpth,
+          rfile: p.rfile,
+          tag: p.tag,
+          version: p.version,
+          plabel: p.plabel,
+          ddate: n.ddate,
+          qtrs: n.qtrs,
+          uom: n.uom,
+          coreg: n.coreg,
+          value: n.value,
+          footnote: n.footnote,
+          abstract: t.abstract,
+          crdr: t.crdr,
+          custom: t.custom,
+          datatype: t.datatype,
+          doc: t.doc,
+          iord: t.iord,
+          tlabel: t.tlabel
+        }
+
+    Repo.all(query)
+  end
+
   @doc """
   Returns the list of submissions.
 

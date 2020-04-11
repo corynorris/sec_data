@@ -36,4 +36,7 @@ In all likelyhood, you will most likely be concerned with presented numerics, ie
 - unclassifiable
 - cover_page
 
-It should be noted that presented numbers often include previous years financials for comparison. Filtering the result by the quarter and date will give you the current financials.
+It should be noted that presented numbers often include previous years financials for comparison. Filtering the result date submitted will give you the current financials. If this is in fact what you're looking to do, you can jump straight to the `/api/companies/:cik/submissions/statements` endpoint which will return all '10-Q' and '10-K' filings for the full duration of the company. Also not that the statements endpoint applies the following filtering:
+
+- iord is not null
+- statement.period == numeric.ddate

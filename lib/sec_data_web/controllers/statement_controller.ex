@@ -5,6 +5,11 @@ defmodule SecDataWeb.StatementController do
 
   action_fallback SecDataWeb.FallbackController
 
+  def statements(conn, %{"company_id" => cik}) do
+    statements = Statements.list_statements(cik)
+    render(conn, "statements.json", statements: statements)
+  end
+
   def presentations(conn, %{"submission_id" => adsh}) do
     presentations = Statements.list_presentations(adsh)
     render(conn, "presentations.json", presentations: presentations)

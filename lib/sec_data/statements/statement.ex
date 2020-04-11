@@ -3,6 +3,12 @@ defmodule SecData.Statements.Statement do
   import Ecto.Changeset
 
   embedded_schema do
+    # Submission
+    field :cik, :integer
+    field :form, :string
+    field :fy, :integer
+    field :fp, FiscalPeriod
+
     # Presentation
     field :inpth, :boolean, default: false
     field :line, :integer
@@ -36,6 +42,10 @@ defmodule SecData.Statements.Statement do
   def changeset(statement, attrs) do
     statement
     |> cast(attrs, [
+      :cik,
+      :form,
+      :fy,
+      :fp,
       :adsh,
       :inpth,
       :line,

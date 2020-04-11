@@ -13,6 +13,8 @@ defmodule SecDataWeb.Router do
     get "/datasets", DatasetController, :index
 
     resources "/companies", CompanyController, only: [:index, :show] do
+      get "/statements", StatementController, :statements
+
       resources "/submissions", SubmissionController, only: [:index] do
         get "/presentations", StatementController, :presentations
         get "/numerics", StatementController, :numerics
