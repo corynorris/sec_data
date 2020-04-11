@@ -12,7 +12,31 @@ defmodule SecData.Statements do
   alias SecData.Statements.Statement
   alias SecData.Statements.Tag
 
-  def list_statements(cik) do
+  def list_submissions(cik) do
+    query =
+      from s in Submission,
+        where: s.cik == ^cik
+
+    Repo.all(query)
+  end
+
+  def list_numerics(adsh) do
+    query =
+      from n in Numeric,
+        where: n.adsh == ^adsh
+
+    Repo.all(query)
+  end
+
+  def list_presentations(adsh) do
+    query =
+      from p in Presentation,
+        where: p.adsh == ^adsh
+
+    Repo.all(query)
+  end
+
+  def list_statements_by_cik(cik) do
     query =
       from s in Submission,
         join: p in Presentation,
@@ -56,42 +80,21 @@ defmodule SecData.Statements do
     Repo.all(query)
   end
 
-  @doc """
-  Returns the list of submissions.
-
-  ## Examples
-
-      iex> list_submissions()
-      [%Submission{}, ...]
-
-  """
-  def list_submissions(cik) do
+  def list_statements_by_adsh(adsh) do
     query =
       from s in Submission,
-        where: s.cik == ^cik
-
-    Repo.all(query)
-  end
-
-  def list_numerics(adsh) do
-    query =
-      from n in Numeric,
-        join: s in Submission,
-        on: n.adsh == s.adsh,
-        where: s.adsh == ^adsh
-
-    Repo.all(query)
-  end
-
-  def list_presentations(adsh) do
-    query =
-      from p in Presentation,
-        left_join: n in Numeric,
+        join: p in Presentation,
+        on: s.adsh == p.adsh,
+        join: n in Numeric,
         on: p.adsh == n.adsh and p.tag == n.tag and p.version == n.version,
-        left_join: t in Tag,
+        join: t in Tag,
         on: p.tag == t.tag and p.version == t.version,
-        where: p.adsh == ^adsh,
+        where: s.period == n.ddate and s.adsh == ^adsh,
         select: %Statement{
+          cik: s.cik,
+          form: s.form,
+          fy: s.fy,
+          fp: s.fp,
           adsh: p.adsh,
           report: p.report,
           line: p.line,

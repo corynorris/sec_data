@@ -2,7 +2,7 @@ defmodule SecDataWeb.Router do
   use SecDataWeb, :router
 
   pipeline :api do
-    plug CORSPlug, origin: ["http://localhost:3000", "https://secdata.corynorris.me"]
+    plug CORSPlug, origin: ["https://secdata.corynorris.me"]
     plug :accepts, ["json"]
   end
 
@@ -13,11 +13,11 @@ defmodule SecDataWeb.Router do
     get "/datasets", DatasetController, :index
 
     resources "/companies", CompanyController, only: [:index, :show] do
-      get "/statements", StatementController, :statements
+      get "/statements", StatementController, :index
 
       resources "/submissions", SubmissionController, only: [:index] do
-        get "/presentations", StatementController, :presentations
-        get "/numerics", StatementController, :numerics
+        get "/statements", StatementController, :index
+        get "/numerics", NumericController, :index
       end
     end
   end
